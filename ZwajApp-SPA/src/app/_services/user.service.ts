@@ -9,13 +9,20 @@ import { User } from '../_models/user';
   providedIn: 'root'
 })
 export class UserService {
-baseUrl=environment.apiUrl+'users/';
-constructor(private http:HttpClient) { }
+  baseUrl=environment.apiUrl+'users/';
+  constructor(private http:HttpClient) { }
 
-getUsers():Observable<User[]>{
+  getUsers():Observable<User[]>{
   return this.http.get<User[]>(this.baseUrl);
-}
-getUser(id):Observable<User>{
+  }
+
+  getUser(id):Observable<User>{
   return this.http.get<User>(this.baseUrl+id);
-}
+  }
+
+  updateUser(id:number,user:User){
+    return this.http.put(this.baseUrl+id,user);
+  }
+
+
 }
